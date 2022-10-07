@@ -39,11 +39,10 @@ nhl_players_dict = json.loads(team_selection_url.content)
 df_players = pd.DataFrame(nhl_players_dict['roster'])
 
 players_ids = pd.DataFrame()
-print(df_players['person'].iloc[0]['id'])
-'''
-players_ids['id'] = df_players['person']
-players_ids['name'] = df_players['person']
+# This requires us to iterate over all of them. We need to fix so this doesnt happen.
+players_ids['id'] = df_players['person'].apply(lambda x: x.get('id'))
+players_ids['name'] = df_players['person'].apply(lambda x: x.get('fullName'))
 players_ids['jerseyNumber'] = df_players['jerseyNumber']
-players_ids['position'] = df_players['position']
-'''
-# print(players_ids.to_string(index=False))
+players_ids['position'] = df_players['position'].apply(lambda x: x.get('abbreviation'))
+
+print(players_ids.to_string(index=False))
