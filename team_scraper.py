@@ -41,6 +41,6 @@ while(True):
         print("You selected an invalid team id. Try again.")
 
     print('Type \'y\' if you would like to learn about another team.')
-    another_request = input('Type \'n\' if you would like to stop:')
+    another_request = input('Type \'n\' if you would like to stop: ')
     if another_request == 'n':
         exit()
