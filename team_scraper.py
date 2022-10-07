@@ -3,7 +3,11 @@ import requests
 import json
 
 #Make a GET request to the undocumented NHL API's Team's webpage
-nhl_teams_url = requests.get('https://statsapi.web.nhl.com/api/v1/teams')
+try:
+    nhl_teams_url = requests.get('https://statsapi.web.nhl.com/api/v1/teams')
+except:
+    print("The NHL Team Stats API is unavailable at the moment. Try again later.")
+    exit()
 
 #Place the NHL teams content into a dictionary
 nhl_team_dict = json.loads(nhl_teams_url.content)
@@ -37,6 +41,6 @@ while(True):
         print("You selected an invalid team id. Try again.")
 
     print('Type \'y\' if you would like to learn about another team.')
-    another_request = input('Type \'n\' if you would like to stop.')
+    another_request = input('Type \'n\' if you would like to stop:')
     if another_request == 'n':
         exit()
